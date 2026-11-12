@@ -1,0 +1,17 @@
+{
+  "name": "TechList",
+  "short_name": "TechList",
+  "description": "Checklists para assistência técnica de computadores",
+  "lang": "pt-BR",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f5f7",
+  "theme_color": "#f5f5f7",
+  "icons": [
+    {
+      "src": "/icons/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <main class="page">
+    <header class="large-header">
+      <p class="eyebrow">TechList</p>
+      <h1 class="large-title">Checklists</h1>
+    </header>
+
+    <ul class="group" role="list">
+      <% checklists.forEach((checklist) => { %>
+        <li>
+          <a class="nav-row" href="/checklists/<%= checklist.slug %>">
+            <span class="nav-row__text">
+              <span class="nav-row__title"><%= checklist.title %></span>
+              <span class="nav-row__subtitle"><%= checklist.subtitle %></span>
+            </span>
+            <span
+              class="nav-row__count"
+              data-progress-slug="<%= checklist.slug %>"
+              data-item-ids="<%= checklist.items.map((item) => item.id).join(',') %>"
+            ><%= checklist.items.length %> itens</span>
+            <svg class="chevron" viewBox="0 0 8 14" aria-hidden="true">
+              <path d="M1 1l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </li>
+      <% }) %>
+    </ul>
+
+    <p class="footnote">Novas checklists aparecerão aqui.</p>
+  </main>
+</body>
+</html>

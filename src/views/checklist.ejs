@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <%- include('partials/head') %>
+</head>
+<body>
+  <nav class="nav-bar glass" aria-label="Navegação">
+    <a class="nav-bar__back" href="/">
+      <svg class="chevron chevron--back" viewBox="0 0 8 14" aria-hidden="true">
+        <path d="M7 1L1 7l6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Checklists
+    </a>
+  </nav>
+
+  <main class="page page--with-bars" data-checklist="<%= checklist.slug %>">
+    <header class="large-header">
+      <p class="eyebrow"><%= checklist.subtitle %></p>
+      <h1 class="large-title"><%= checklist.title %></h1>
+      <p class="lede"><%= checklist.description %></p>
+    </header>
+
+    <section class="progress-card" aria-label="Progresso">
+      <div class="progress-card__row">
+        <span class="progress-card__label">Progresso</span>
+        <span class="progress-card__count" data-progress-count>0 de <%= checklist.items.length %></span>
+      </div>
+      <div
+        class="progress"
+        role="progressbar"
+        aria-valuemin="0"
+        aria-valuemax="<%= checklist.items.length %>"
+        aria-valuenow="0"
+        data-progress-bar
+      >
+        <div class="progress__fill" data-progress-fill></div>
+      </div>
+    </section>
+
+    <ul class="group" role="list">
+      <% checklist.items.forEach((item) => { %>
+        <li>
+          <label class="check-row">
+            <input class="check-row__input" type="checkbox" data-item-id="<%= item.id %>">
+            <span class="check-row__text">
+              <span class="check-row__label"><%= item.label %></span>
+              <% if (item.note) { %>
+                <span class="check-row__note"><%= item.note %></span>
+              <% } %>
+            </span>
+          </label>
+        </li>
+      <% }) %>
+    </ul>
+  </main>
+
+  <div class="action-bar glass">
+    <p class="action-bar__status" data-status aria-live="polite">
+      Faltam <%= checklist.items.length %> itens
+    </p>
+    <button class="button-plain" type="button" data-reset>Limpar</button>
+  </div>
+</body>
+</html>

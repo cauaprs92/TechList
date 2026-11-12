@@ -1,0 +1,53 @@
+/* Variáveis de design: cores, tipografia, espaçamento e formas. */
+
+:root {
+  color-scheme: light dark;
+
+  /* Cores – modo claro */
+  --bg: #f5f5f7;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --text-tertiary: #a1a1a6;
+  --separator: rgba(60, 60, 67, 0.16);
+  --accent: #0071e3;
+  --success: #248a3d;
+  --control-border: #c7c7cc;
+  --track: rgba(120, 120, 128, 0.16);
+  --pressed: rgba(120, 120, 128, 0.12);
+  --glass: rgba(255, 255, 255, 0.72);
+  --glass-solid: #ffffff;
+  --glass-border: rgba(0, 0, 0, 0.08);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  /* Tipografia – no iPhone, esta pilha usa a San Francisco do sistema */
+  --font: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Formas e espaçamento */
+  --radius-group: 22px;
+  --radius-pill: 999px;
+  --gutter: 16px;
+  --row-min: 52px;
+
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000000;
+    --surface: #1c1c1e;
+    --text: #f5f5f7;
+    --text-secondary: #98989d;
+    --text-tertiary: #636366;
+    --separator: rgba(84, 84, 88, 0.6);
+    --accent: #0a84ff;
+    --success: #30d158;
+    --control-border: #48484a;
+    --track: rgba(120, 120, 128, 0.32);
+    --pressed: rgba(120, 120, 128, 0.24);
+    --glass: rgba(30, 30, 32, 0.68);
+    --glass-solid: #1c1c1e;
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  }
+}
