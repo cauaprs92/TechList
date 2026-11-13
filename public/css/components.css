@@ -133,9 +133,24 @@
   background: var(--separator);
 }
 
-/* Na checklist, o separador começa depois do círculo */
-.group > li + li:has(.check-row)::before {
-  left: 54px;
+/* ---------- Lista de cartões separados (itens da checklist) ---------- */
+
+.card-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.card-list > li {
+  background: var(--surface);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: opacity 0.2s var(--ease);
+}
+
+/* Item já conferido fica mais discreto, destacando o que ainda falta */
+.card-list > li:has(.check-row__input:checked) {
+  opacity: 0.6;
 }
 
 /* ---------- Linha de navegação (tela inicial) ---------- */
@@ -236,8 +251,8 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  min-height: var(--row-min);
-  padding: 12px 16px;
+  min-height: 60px;
+  padding: 14px 16px;
   cursor: pointer;
   -webkit-user-select: none;
   user-select: none;
