@@ -18,4 +18,17 @@
 <link rel="stylesheet" href="/css/tokens.css">
 <link rel="stylesheet" href="/css/base.css">
 <link rel="stylesheet" href="/css/components.css">
+<link rel="stylesheet" href="/css/motion.css">
+
+<!-- A tela de abertura aparece só na primeira página de cada abertura do app.
+     Fica aqui no <head>, antes do conteúdo, para ela não piscar nas demais. -->
+<script>
+  try {
+    if (sessionStorage.getItem('techlist:splash')) {
+      document.documentElement.classList.add('no-splash');
+    } else {
+      sessionStorage.setItem('techlist:splash', '1');
+    }
+  } catch (error) {}
+</script>
 <script src="/js/checklist.js" defer></script>

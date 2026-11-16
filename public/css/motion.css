@@ -1,0 +1,155 @@
+/* Animações: tela de abertura e transições entre páginas. */
+
+/* Fundo também no <html>, para não aparecer branco atrás das páginas em movimento */
+html {
+  background: var(--bg);
+}
+
+/* ---------- Tela de abertura: o ícone do app se "checando" ----------
+   Aparece uma vez por abertura do app. Some sozinha, só com CSS. */
+
+.splash {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  animation: splash-out 0.4s var(--ease) 1.25s forwards;
+}
+
+/* Já foi exibida nesta abertura (classe colocada pelo script no <head>) */
+.no-splash .splash {
+  display: none;
+}
+
+.splash__tile {
+  display: grid;
+  place-items: center;
+  width: 112px;
+  height: 112px;
+  border-radius: 26px;
+  background: linear-gradient(#3a3a3c, #1c1c1e);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+  animation: splash-pop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both,
+    splash-zoom 0.4s var(--ease) 1.25s forwards;
+}
+
+.splash__icon {
+  width: 100%;
+  height: 100%;
+}
+
+.splash__check {
+  fill: none;
+  stroke: #0a84ff;
+  stroke-width: 18;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  animation: splash-draw 0.45s cubic-bezier(0.65, 0, 0.35, 1) 0.35s forwards;
+}
+
+@keyframes splash-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes splash-draw {
+  from {
+    opacity: 0;
+    stroke-dashoffset: 1;
+  }
+  1% {
+    opacity: 1;
+  }
+  to {
+    opacity: 1;
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes splash-zoom {
+  to {
+    transform: scale(1.15);
+  }
+}
+
+@keyframes splash-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* ---------- Transição entre páginas (estilo "push" do iOS) ----------
+   Usa View Transitions entre documentos (Safari 18.2+). Em navegadores sem
+   suporte a navegação acontece normalmente, sem animação.
+   As regras valem para a página de DESTINO:
+   - abrindo uma checklist (.page-detail): a nova entra pela direita;
+   - voltando para a lista (.page-home): a atual sai pela direita. */
+
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+  animation-duration: 0.42s;
+  animation-timing-function: cubic-bezier(0.32, 0.72, 0, 1);
+  animation-fill-mode: both;
+}
+
+/* Avançar: lista -> checklist */
+.page-detail::view-transition-old(root) {
+  animation-name: slide-out-left;
+}
+
+.page-detail::view-transition-new(root) {
+  animation-name: slide-in-right;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Voltar: checklist -> lista */
+.page-home::view-transition-old(root) {
+  z-index: 1;
+  animation-name: slide-out-right;
+  box-shadow: -8px 0 32px rgba(0, 0, 0, 0.12);
+}
+
+.page-home::view-transition-new(root) {
+  animation-name: slide-in-left;
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-out-left {
+  to {
+    transform: translateX(-30%);
+    opacity: 0.6;
+  }
+}
+
+@keyframes slide-out-right {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-30%);
+    opacity: 0.6;
+  }
+}
