@@ -40,12 +40,15 @@
     <ul class="card-list" role="list">
       <% checklist.items.forEach((item) => { %>
         <li>
-          <label class="check-row">
+          <label class="check-row<%= item.detail ? ' check-row--detailed' : '' %>">
             <input class="check-row__input" type="checkbox" data-item-id="<%= item.id %>">
             <span class="check-row__text">
               <span class="check-row__label"><%= item.label %></span>
               <% if (item.note) { %>
                 <span class="check-row__note"><%= item.note %></span>
+              <% } %>
+              <% if (item.detail) { %>
+                <span class="check-row__detail"><%= item.detail %></span>
               <% } %>
             </span>
           </label>

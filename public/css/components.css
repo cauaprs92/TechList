@@ -307,6 +307,29 @@
   font-size: 14px;
 }
 
+/* Item com texto explicativo: título em destaque e círculo alinhado ao topo */
+.check-row--detailed {
+  align-items: flex-start;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.check-row--detailed .check-row__text {
+  gap: 6px;
+}
+
+.check-row--detailed .check-row__label {
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.check-row__detail {
+  color: var(--text-secondary);
+  font-size: 15px;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+
 .check-row__input:checked + .check-row__text .check-row__label {
   color: var(--text-secondary);
 }
