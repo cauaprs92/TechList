@@ -95,4 +95,22 @@ module.exports = [
       },
     ],
   },
+  {
+    slug: 'manutencao-hardware-desktop-gamer',
+    title: 'Manutenção em Hardware de Desktops (Gamer)',
+    subtitle: 'Checklist de manutenção em hardware',
+    description: 'Confira cada componente antes de entregar a máquina ao cliente.',
+    items: [
+      { id: 'fonte', label: 'Fonte' },
+      { id: 'memoria-ram', label: 'Memória RAM' },
+      { id: 'reset-bios', label: 'Reset BIOS' },
+      { id: 'placa-de-video', label: 'Placa de vídeo' },
+      { id: 'saude-discos', label: 'Saúde de discos' },
+      { id: 'placa-mae', label: 'Placa-mãe' },
+      { id: 'processador', label: 'Processador' },
+      { id: 'pasta-termica', label: 'Pasta térmica' },
+      { id: 'limpeza', label: 'Limpeza gabinete, fans, dispositivos' },
+      { id: 'memtest', label: 'MemTest' },
+    ],
+  },
 ];
